@@ -100,7 +100,6 @@ const REVIEWS = [
   },
 ];
 
-// --- COMPONENTS ---
 
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
@@ -115,7 +114,7 @@ const Navbar = () => (
         <Link href="#" className="hover:text-blue-700 transition-colors">
           About
         </Link>
-        <Link href="#" className="hover:text-blue-700 transition-colors">
+        <Link href="/rental" className="hover:text-blue-700 transition-colors">
           Rental
         </Link>
         <Link href="#" className="hover:text-blue-700 transition-colors">
@@ -198,7 +197,6 @@ export default function LandingPage() {
     <div className="min-h-screen font-sans bg-white text-gray-900 selection:bg-blue-700 selection:text-white">
       <Navbar />
 
-      {/* --- HERO SECTION (Clean, Professional, Solid) --- */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -249,7 +247,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* --- BENTO GRID (Structured, Solid Colors, No Gradients) --- */}
       <section className="py-24 px-6 bg-gray-50 border-y border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
@@ -263,7 +260,6 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[500px]">
-            {/* Box 1: Main Feature (Large) */}
             <div className="md:col-span-2 md:row-span-2 bg-white p-10 rounded-2xl border border-gray-200 flex flex-col justify-between hover:border-blue-700 transition-colors duration-300 group">
               <div>
                 <div className="w-14 h-14 bg-blue-700 rounded-xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
@@ -280,7 +276,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Box 2: Solid Color Feature */}
             <div className="bg-blue-700 text-white p-8 rounded-2xl flex flex-col justify-between">
               <Clock size={32} strokeWidth={2} className="mb-6" />
               <div>
@@ -293,7 +288,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Box 3: Image Feature */}
             <div className="relative bg-gray-200 rounded-2xl overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&q=80&w=600"
@@ -310,7 +304,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Box 4: Wide Feature */}
             <div className="md:col-span-2 bg-white p-8 rounded-2xl border border-gray-200 flex items-center gap-6 hover:border-blue-700 transition-colors duration-300">
               <div className="flex-1">
                 <h3 className="text-xl font-bold mb-2 tracking-tight">
@@ -327,7 +320,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* --- VEHICLE LIST (Clean Cards, Distinct Borders) --- */}
       <section className="py-24 px-6 bg-white" id="armada">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -340,7 +332,6 @@ export default function LandingPage() {
               </p>
             </div>
 
-            {/* Solid Segmented Control Filter */}
             <div className="flex p-1 bg-gray-100 rounded-lg border border-gray-200">
               {(["all", "car", "bike"] as const).map((item) => (
                 <button
