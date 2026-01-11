@@ -65,8 +65,8 @@ const Footer = () => (
           DAFA RENTAL.
         </h2>
         <p className="text-gray-400 leading-relaxed max-w-md">
-          Mitra transportasi profesional Anda. Menyediakan armada premium dengan
-          standar keselamatan tertinggi untuk perjalanan bisnis dan liburan.
+          Your professional transport partner. Providing premium fleets with the
+          highest safety standards for business and leisure travel.
         </p>
       </div>
       <div>
@@ -76,17 +76,17 @@ const Footer = () => (
         <ul className="space-y-4 font-medium text-gray-400">
           <li>
             <Link href="#" className="hover:text-white transition">
-              Armada Kami
+              Our Fleet
             </Link>
           </li>
           <li>
             <Link href="#" className="hover:text-white transition">
-              Syarat & Ketentuan
+              Terms & Conditions
             </Link>
           </li>
           <li>
             <Link href="#" className="hover:text-white transition">
-              Tentang Perusahaan
+              Company Profile
             </Link>
           </li>
         </ul>
@@ -112,10 +112,11 @@ export default function RentalPage() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [categoryFilter, setCategoryFilter] = useState<FilterType>("all");
 
+  // Translated Categories
   const categories: CategoryOption[] = [
-    { id: "all", label: "Semua Armada", icon: Settings },
-    { id: "car", label: "Mobil (Cars)", icon: Car },
-    { id: "bike", label: "Motor (Bikes)", icon: Bike },
+    { id: "all", label: "All Units", icon: Settings },
+    { id: "car", label: "Cars", icon: Car },
+    { id: "bike", label: "Bikes", icon: Bike },
   ];
 
   const filteredData = vehicles.filter((item) => {
@@ -139,15 +140,15 @@ export default function RentalPage() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block px-4 py-2 mb-6 text-xs font-bold tracking-widest text-blue-700 uppercase bg-blue-50 border border-blue-100 rounded-md">
-              Katalog Lengkap
+              Full Catalog
             </div>
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-gray-900">
-              Temukan Armada <br />{" "}
-              <span className="text-blue-700">Pilihan Anda.</span>
+              Find Your Perfect <br />{" "}
+              <span className="text-blue-700">Fleet.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium">
-              Koleksi kendaraan terawat dengan spesifikasi lengkap untuk
-              kenyamanan perjalanan bisnis maupun liburan Anda.
+              A collection of well-maintained vehicles with complete specifications
+              for the comfort of your business or leisure trips.
             </p>
           </motion.div>
         </div>
@@ -158,12 +159,12 @@ export default function RentalPage() {
           <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
             <div className="flex items-center gap-2 mb-6 text-gray-900 font-bold uppercase tracking-wider text-sm border-b border-gray-100 pb-4">
               <Filter size={18} className="text-blue-700" />
-              Filter Pencarian
+              Search Filter
             </div>
 
             <div className="mb-8">
               <label className="text-xs font-bold text-gray-500 uppercase mb-3 block tracking-wide">
-                Cari Unit
+                Search Unit
               </label>
               <div className="relative">
                 <Search
@@ -172,7 +173,7 @@ export default function RentalPage() {
                 />
                 <input
                   type="text"
-                  placeholder="Contoh: Alphard..."
+                  placeholder="Ex: Alphard..."
                   className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition-all placeholder:text-gray-400"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -182,7 +183,7 @@ export default function RentalPage() {
 
             <div>
               <label className="text-xs font-bold text-gray-500 uppercase mb-4 block tracking-wide">
-                Kategori Kendaraan
+                Vehicle Category
               </label>
               <div className="space-y-3">
                 {categories.map((cat) => (
@@ -214,9 +215,9 @@ export default function RentalPage() {
 
           <div className="bg-blue-700 text-white p-6 rounded-xl text-center">
             <ShieldCheck size={32} className="mx-auto mb-4 opacity-80" />
-            <h4 className="font-bold text-lg mb-2">Jaminan Kualitas</h4>
+            <h4 className="font-bold text-lg mb-2">Quality Guarantee</h4>
             <p className="text-blue-100 text-sm leading-relaxed">
-              Semua unit melewati inspeksi rutin untuk keamanan Anda.
+              All units undergo routine inspections for your safety.
             </p>
           </div>
         </aside>
@@ -224,9 +225,9 @@ export default function RentalPage() {
         <div className="w-full lg:w-3/4">
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
             <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">
-              Menampilkan{" "}
-              <span className="text-gray-900">{filteredData.length}</span> Unit
-              Tersedia
+              Showing{" "}
+              <span className="text-gray-900">{filteredData.length}</span>{" "}
+              Available Units
             </div>
           </div>
 
@@ -298,12 +299,12 @@ export default function RentalPage() {
                       <div className="mt-auto flex justify-between items-end">
                         <div>
                           <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wide mb-0.5">
-                            Harga Sewa
+                            Rental Price
                           </p>
                           <div className="text-blue-700 font-black text-xl">
                             Rp {(item.price / 1000).toLocaleString("id-ID")}k
                             <span className="text-xs text-gray-400 font-medium ml-1">
-                              /hari
+                              /day
                             </span>
                           </div>
                         </div>
@@ -320,10 +321,10 @@ export default function RentalPage() {
                     <Search className="text-gray-400" size={24} />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-1">
-                    Unit Tidak Ditemukan
+                    Unit Not Found
                   </h3>
                   <p className="text-gray-500 text-sm mb-6 max-w-xs mx-auto">
-                    Coba ubah kata kunci pencarian atau kategori filter Anda.
+                    Try changing your search keywords or filter category.
                   </p>
                   <button
                     onClick={() => {
