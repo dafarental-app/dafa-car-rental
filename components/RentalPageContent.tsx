@@ -21,8 +21,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { urlFor } from "@/lib/sanity";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
+import type { SanityImageSource } from "@sanity/image-url";
 type FilterType = "all" | "car" | "bike";
 
 interface CategoryOption {
