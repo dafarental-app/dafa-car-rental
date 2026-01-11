@@ -22,7 +22,7 @@ const itemVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" as const},
   },
 };
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 24/7 Support
               </div>
               <h1 className="text-5xl lg:text-7xl font-black tracking-tighter leading-none mb-6 drop-shadow-lg">
-                Let's Start a
+                Let`s Start a
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">
                   Conversation.
