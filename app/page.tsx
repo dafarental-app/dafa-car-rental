@@ -19,7 +19,6 @@ import Image from "next/image";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-// Mengimport data dengan nama variabel yang sesuai (huruf kecil) dari langkah sebelumnya
 import { vehicles, reviews } from "@/data/vehicle";
 
 export default function LandingPage() {
@@ -28,7 +27,6 @@ export default function LandingPage() {
   const filteredVehicles =
     filter === "all" ? vehicles : vehicles.filter((v) => v.type === filter);
 
-  // Helper untuk format harga number ke Rupiah
   const formatRupiah = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -42,7 +40,6 @@ export default function LandingPage() {
     <div className="min-h-screen font-sans bg-white text-gray-900 selection:bg-blue-700 selection:text-white">
       <Navbar />
 
-      {/* --- Hero Section --- */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -66,11 +63,11 @@ export default function LandingPage() {
               fleet, transparent process, and 24/7 support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex items-center justify-center gap-3 px-8 py-4 bg-blue-700 text-white rounded-lg font-bold uppercase tracking-wider hover:bg-blue-800 transition-all active:scale-95">
+              <button className="flex items-center justify-center gap-3 px-8 py-4 bg-blue-700 text-white rounded-lg font-bold uppercase tracking-wider hover:bg-blue-800 transition-all active:scale-95 cursor-pointer">
                 View Fleet
                 <ArrowRight size={20} />
               </button>
-              <button className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-lg font-bold uppercase tracking-wider hover:border-gray-900 transition-all">
+              <button className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-lg font-bold uppercase tracking-wider hover:border-gray-900 transition-all hover:bg-gray-900 transition-all active:scale-95 cursor-pointer">
                 Contact Us
               </button>
             </div>
@@ -93,7 +90,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* --- Features Section --- */}
       <section className="py-24 px-6 bg-gray-50 border-y border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
@@ -166,7 +162,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* --- Fleet / Armada Section --- */}
       <section className="py-24 px-6 bg-white" id="armada">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
@@ -215,7 +210,6 @@ export default function LandingPage() {
                   key={vehicle.id}
                   className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-blue-700 hover:shadow-lg transition-all duration-300 flex flex-col"
                 >
-                  {/* Image Container with Year Badge */}
                   <div className="relative h-64 bg-gray-100 border-b border-gray-200">
                     <Image
                       src={vehicle.image}
@@ -246,7 +240,6 @@ export default function LandingPage() {
                         {vehicle.name}
                       </h3>
 
-                      {/* Specs Grid (New Data Display) */}
                       <div className="grid grid-cols-2 gap-y-3 gap-x-2 mb-6">
                         <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
                           <Settings size={14} className="text-blue-700" />
@@ -271,7 +264,6 @@ export default function LandingPage() {
                       </div>
                     </div>
 
-                    {/* Price & Action */}
                     <div className="pt-6 border-t border-gray-100 flex justify-between items-end">
                       <div>
                         <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wide mb-1">
@@ -296,7 +288,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* --- Testimonials Section --- */}
       <section className="py-24 bg-gray-50 border-t border-gray-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-center">
           <h2 className="text-3xl font-black tracking-tighter">
@@ -336,7 +327,6 @@ export default function LandingPage() {
                   &quot;{review.text}&quot;
                 </p>
 
-                {/* Updated Reviewer Info with Avatar */}
                 <div className="flex items-center gap-4">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-100 border border-gray-200">
                     <Image
@@ -361,7 +351,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* --- CTA Section --- */}
       <section className="py-32 px-6 bg-blue-700">
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 leading-tight">

@@ -7,10 +7,10 @@ const Navbar = () => (
         DAFA<span className="text-blue-700">RENTAL.</span>
       </div>
       <div className="hidden md:flex gap-10 text-sm font-bold text-gray-600 uppercase tracking-wider">
-        <Link href="#" className="hover:text-blue-700 transition-colors">
+        <Link href="/" className="hover:text-blue-700 transition-colors">
           Home
         </Link>
-        <Link href="#" className="hover:text-blue-700 transition-colors">
+        <Link href="/about" className="hover:text-blue-700 transition-colors">
           About
         </Link>
         <Link href="/rental" className="hover:text-blue-700 transition-colors">
