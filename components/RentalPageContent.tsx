@@ -15,7 +15,7 @@ import {
   Settings,
   LucideIcon,
   ChevronDown,
-  ChevronUp, // Tambahan untuk indikator buka/tutup
+  ChevronUp,
   CalendarDays,
 } from "lucide-react";
 
@@ -24,7 +24,7 @@ import Footer from "@/components/Footer";
 import { urlFor } from "@/lib/sanity";
 import { SanityImageSource } from "@sanity/image-url";
 
-// --- TYPE DEFINITIONS ---
+// --- DEFINISI TIPE DATA ---
 type FilterType = "all" | "car" | "bike";
 
 interface CategoryOption {
@@ -59,8 +59,6 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [categoryFilter, setCategoryFilter] = useState<FilterType>("all");
   const [selectedDurations, setSelectedDurations] = useState<{ [key: string]: number }>({});
-  
-  // STATE BARU: Kontrol buka/tutup filter di mobile
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   const categories: CategoryOption[] = [
@@ -93,11 +91,20 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
     }));
   };
 
+  // --- FUNGSI BARU: HANDLE KLIK KE WHATSAPP ---
+  const handleBooking = (vehicle: Vehicle) => {
+    const phoneNumber = "6287765089140"; // Ganti 0 dengan 62
+    
+    // Pesan otomatis berisi Nama Unit dan ID Unit
+    const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
+    
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+  };
+
   return (
     <main className="min-h-screen bg-white font-sans text-gray-900 selection:bg-blue-700 selection:text-white">
       <Navbar />
 
-      {/* HEADER TETAP SAMA */}
       <header className="pt-32 pb-16 px-6 bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
@@ -109,8 +116,7 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
               Full Catalog
             </div>
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-gray-900">
-              Find Your Perfect <br />{" "}
-              <span className="text-blue-700">Fleet.</span>
+              Find Your Perfect <br /> <span className="text-blue-700">Fleet.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium">
               A collection of well-maintained vehicles with complete specifications
@@ -121,29 +127,21 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
       </header>
 
       <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12">
-        {/* SIDEBAR FILTER */}
-        <aside className="w-full lg:w-1/4 h-fit lg:sticky lg:top-28 space-y-8">
-          
-          {/* TOMBOL TOGGLE KHUSUS MOBILE (Baru) */}
-          {/* Hanya muncul di layar kecil (lg:hidden), Style mengikuti desain card asli */}
+        <aside className="w-full lg:w-1/4 h-fit lg:sticky lg:top-28 space-y-4 lg:space-y-8">
           <button 
             onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
-            className="w-full lg:hidden bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between text-gray-900 font-bold active:bg-gray-50 transition-colors"
+            className="w-full lg:hidden bg-white border border-gray-200 p-4 rounded-xl flex items-center justify-between text-gray-900 font-bold shadow-sm active:scale-[0.98] transition-transform"
           >
             <div className="flex items-center gap-2">
               <Filter size={18} className="text-blue-700" />
-              <span className="uppercase tracking-wide text-sm">
-                {isMobileFilterOpen ? "Hide Filter" : "Show Filter"}
-              </span>
+              <span>{isMobileFilterOpen ? "Hide Filters" : "Show Filters"}</span>
             </div>
             {isMobileFilterOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
           </button>
 
-          {/* WRAPPER KONTEN FILTER */}
-          {/* Hidden di mobile jika belum dibuka, Always Block di Desktop */}
-          <div className={`${isMobileFilterOpen ? "block" : "hidden"} lg:block space-y-8`}>
+          <div className={`space-y-8 ${isMobileFilterOpen ? "block animate-in fade-in slide-in-from-top-2 duration-300" : "hidden"} lg:block`}>
             <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-              <div className="flex items-center gap-2 mb-6 text-gray-900 font-bold uppercase tracking-wider text-sm border-b border-gray-100 pb-4">
+              <div className="hidden lg:flex items-center gap-2 mb-6 text-gray-900 font-bold uppercase tracking-wider text-sm border-b border-gray-100 pb-4">
                 <Filter size={18} className="text-blue-700" />
                 Search Filter
               </div>
@@ -153,10 +151,7 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
                   Search Unit
                 </label>
                 <div className="relative">
-                  <Search
-                    className="absolute left-3 top-3 text-gray-400"
-                    size={18}
-                  />
+                  <Search className="absolute left-3 top-3 text-gray-400" size={18} />
                   <input
                     type="text"
                     placeholder="Ex: Alphard..."
@@ -209,30 +204,20 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
           </div>
         </aside>
 
-        {/* DATA LIST */}
         <div className="w-full lg:w-3/4">
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
             <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">
-              Showing{" "}
-              <span className="text-gray-900">{filteredData.length}</span>{" "}
-              Available Units
+              Showing <span className="text-gray-900">{filteredData.length}</span> Available Units
             </div>
           </div>
 
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8"
-          >
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             <AnimatePresence>
               {filteredData.length > 0 ? (
                 filteredData.map((vehicle) => {
                   const selectedIdx = selectedDurations[vehicle._id] ?? -1;
-                  const currentPrice = selectedIdx === -1 
-                    ? vehicle.price 
-                    : vehicle.priceOptions?.[selectedIdx]?.price ?? vehicle.price;
-                  const priceUnit = selectedIdx === -1 
-                    ? "/Day" 
-                    : `/${vehicle.priceOptions?.[selectedIdx]?.label}`;
+                  const currentPrice = selectedIdx === -1 ? vehicle.price : vehicle.priceOptions?.[selectedIdx]?.price ?? vehicle.price;
+                  const priceUnit = selectedIdx === -1 ? "/Day" : `/${vehicle.priceOptions?.[selectedIdx]?.label}`;
 
                   return (
                     <motion.div
@@ -260,65 +245,28 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
                       <div className="p-6 flex flex-col flex-grow">
                         <div className="flex-grow">
                           <div className="flex items-center gap-2 mb-2">
-                            <span
-                              className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${
-                                vehicle.type === "car"
-                                  ? "bg-blue-50 text-blue-700"
-                                  : "bg-orange-50 text-orange-700"
-                              }`}
-                            >
+                            <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${vehicle.type === "car" ? "bg-blue-50 text-blue-700" : "bg-orange-50 text-orange-700"}`}>
                               {vehicle.type}
                             </span>
                           </div>
-                          <h3 className="font-bold text-lg text-gray-900 mb-4 tracking-tight leading-snug">
-                            {vehicle.name}
-                          </h3>
+                          <h3 className="font-bold text-lg text-gray-900 mb-4 tracking-tight leading-snug">{vehicle.name}</h3>
 
                           <div className="grid grid-cols-2 gap-y-3 gap-x-2 mb-6">
-                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                              <Settings size={14} className="text-blue-700" />
-                              {vehicle.transmission}
-                            </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                              <Fuel size={14} className="text-blue-700" />
-                              {vehicle.fuel}
-                            </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                              <Users size={14} className="text-blue-700" />
-                              {vehicle.seats} Seat
-                            </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
-                              {vehicle.type === "car" ? (
-                                <Car size={14} className="text-blue-700" />
-                              ) : (
-                                <Bike size={14} className="text-blue-700" />
-                              )}
-                              Unit Ready
-                            </div>
+                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium"><Settings size={14} className="text-blue-700" /> {vehicle.transmission}</div>
+                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium"><Fuel size={14} className="text-blue-700" /> {vehicle.fuel}</div>
+                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium"><Users size={14} className="text-blue-700" /> {vehicle.seats} Seat</div>
+                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">{vehicle.type === "car" ? <Car size={14} className="text-blue-700" /> : <Bike size={14} className="text-blue-700" />} Unit Ready</div>
                           </div>
 
-                          {/* DROPDOWN LOGIC */}
                           {vehicle.priceOptions && vehicle.priceOptions.length > 0 && (
                             <div className="mb-4">
-                              <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">
-                                Duration
-                              </label>
+                              <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Duration</label>
                               <div className="relative">
-                                <select
-                                  className="w-full text-xs font-medium bg-gray-50 border border-gray-200 text-gray-700 py-2 pl-3 pr-8 rounded-lg appearance-none focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 cursor-pointer transition-all"
-                                  value={selectedIdx}
-                                  onChange={(e) => handleDurationChange(vehicle._id, parseInt(e.target.value))}
-                                >
+                                <select className="w-full text-xs font-medium bg-gray-50 border border-gray-200 text-gray-700 py-2 pl-3 pr-8 rounded-lg appearance-none focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 cursor-pointer transition-all" value={selectedIdx} onChange={(e) => handleDurationChange(vehicle._id, parseInt(e.target.value))}>
                                   <option value={-1}>1 Day (Daily)</option>
-                                  {vehicle.priceOptions.map((opt, idx) => (
-                                    <option key={idx} value={idx}>
-                                      {opt.label}
-                                    </option>
-                                  ))}
+                                  {vehicle.priceOptions.map((opt, idx) => (<option key={idx} value={idx}>{opt.label}</option>))}
                                 </select>
-                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
-                                  <ChevronDown size={14} />
-                                </div>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500"><ChevronDown size={14} /></div>
                               </div>
                             </div>
                           )}
@@ -326,17 +274,15 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
 
                         <div className="pt-6 border-t border-gray-100 flex justify-between items-end">
                           <div>
-                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wide mb-1">
-                              {selectedIdx === -1 ? "Starts From" : "Total Price"}
-                            </p>
-                            <p className="text-blue-700 font-black text-lg">
-                              {formatRupiah(currentPrice)}
-                              <span className="text-xs text-gray-400 font-medium ml-1">
-                                {priceUnit}
-                              </span>
-                            </p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wide mb-1">{selectedIdx === -1 ? "Starts From" : "Total Price"}</p>
+                            <p className="text-blue-700 font-black text-lg">{formatRupiah(currentPrice)}<span className="text-xs text-gray-400 font-medium ml-1">{priceUnit}</span></p>
                           </div>
-                          <button className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors">
+                          
+                          {/* BUTTON DENGAN EVENT ONCLICK KE WA */}
+                          <button 
+                            onClick={() => handleBooking(vehicle)}
+                            className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"
+                          >
                             <ArrowRight size={18} strokeWidth={2.5} />
                           </button>
                         </div>
@@ -346,24 +292,10 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
                 })
               ) : (
                 <div className="col-span-full py-20 text-center bg-gray-50 rounded-xl border border-dashed border-gray-300">
-                  <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border border-gray-200 shadow-sm">
-                    <Search className="text-gray-400" size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">
-                    Unit Not Found
-                  </h3>
-                  <p className="text-gray-500 text-sm mb-6 max-w-xs mx-auto">
-                    Try changing your search keywords or filter category.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSearchTerm("");
-                      setCategoryFilter("all");
-                    }}
-                    className="text-blue-700 text-xs font-bold uppercase tracking-widest hover:underline"
-                  >
-                    Reset Filter
-                  </button>
+                  <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border border-gray-200 shadow-sm"><Search className="text-gray-400" size={24} /></div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">Unit Not Found</h3>
+                  <p className="text-gray-500 text-sm mb-6 max-w-xs mx-auto">Try changing your search keywords or filter category.</p>
+                  <button onClick={() => { setSearchTerm(""); setCategoryFilter("all"); }} className="text-blue-700 text-xs font-bold uppercase tracking-widest hover:underline">Reset Filter</button>
                 </div>
               )}
             </AnimatePresence>

@@ -192,7 +192,7 @@ export default function AboutPage() {
                       </div>
                       <div>
                           <h4 className="font-bold text-lg">Head Office</h4>
-                          <p className="text-gray-400 text-sm mt-0.5 leading-snug">Jl. Sudirman No. 45, Jakarta Selatan,<br/> DKI Jakarta 12190</p>
+                          <p className="text-gray-400 text-sm mt-0.5 leading-snug">Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut, Kabupaten Lombok Tengah, <br/> Nusa Tenggara Bar. 83573</p>
                       </div>
                   </div>
                   <div className="flex items-center gap-5 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
@@ -201,12 +201,12 @@ export default function AboutPage() {
                       </div>
                       <div>
                           <h4 className="font-bold text-lg">Call Center</h4>
-                          <p className="text-gray-400 text-sm mt-0.5">+62 812 3456 7890 (24 Hours)</p>
+                          <p className="text-gray-400 text-sm mt-0.5">087765089140 (24 Hours)</p>
                       </div>
                   </div>
               </div>
 
-              <Link href="/" className="group inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all active:scale-95 hover">
+              <Link href="https://maps.app.goo.gl/uHqfBo7ujzNb8bAW9" className="group inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all active:scale-95 hover">
                   Get Directions
                   <ArrowUpRight size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"/>
               </Link>

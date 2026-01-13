@@ -38,9 +38,9 @@ const Footer = () => (
           Contact
         </h4>
         <ul className="space-y-4 font-medium text-gray-400">
-          <li>Jakarta Selatan, Indonesia</li>
-          <li>+62-877-650-891-40</li>
-          <li>business@dafarental.com</li>
+          <li>Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut, Kabupaten Lombok Tengah, Nusa Tenggara Bar. 83573</li>
+          <li>087765089140</li>
+          <li>dafascooterrentcar@gmail.com</li>
         </ul>
       </div>
     </div>
