@@ -15,13 +15,16 @@ import {
   Settings,
   LucideIcon,
   ChevronDown,
+  ChevronUp, // Tambahan untuk indikator buka/tutup
   CalendarDays,
 } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { urlFor } from "@/lib/sanity";
-import type { SanityImageSource } from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/image-url";
+
+// --- TYPE DEFINITIONS ---
 type FilterType = "all" | "car" | "bike";
 
 interface CategoryOption {
@@ -55,8 +58,10 @@ interface RentalPageContentProps {
 export default function RentalPageContent({ vehicles }: RentalPageContentProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [categoryFilter, setCategoryFilter] = useState<FilterType>("all");
-
   const [selectedDurations, setSelectedDurations] = useState<{ [key: string]: number }>({});
+  
+  // STATE BARU: Kontrol buka/tutup filter di mobile
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   const categories: CategoryOption[] = [
     { id: "all", label: "All Units", icon: Settings },
@@ -67,11 +72,8 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
   const safeVehicles = vehicles || [];
 
   const filteredData = safeVehicles.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesCategory =
-      categoryFilter === "all" ? true : item.type === categoryFilter;
+    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = categoryFilter === "all" ? true : item.type === categoryFilter;
     return matchesSearch && matchesCategory;
   });
 
@@ -95,6 +97,7 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
     <main className="min-h-screen bg-white font-sans text-gray-900 selection:bg-blue-700 selection:text-white">
       <Navbar />
 
+      {/* HEADER TETAP SAMA */}
       <header className="pt-32 pb-16 px-6 bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
@@ -118,73 +121,95 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
       </header>
 
       <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12">
-        <aside className="w-full lg:w-1/4 h-fit sticky top-28 space-y-8">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <div className="flex items-center gap-2 mb-6 text-gray-900 font-bold uppercase tracking-wider text-sm border-b border-gray-100 pb-4">
+        {/* SIDEBAR FILTER */}
+        <aside className="w-full lg:w-1/4 h-fit lg:sticky lg:top-28 space-y-8">
+          
+          {/* TOMBOL TOGGLE KHUSUS MOBILE (Baru) */}
+          {/* Hanya muncul di layar kecil (lg:hidden), Style mengikuti desain card asli */}
+          <button 
+            onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+            className="w-full lg:hidden bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between text-gray-900 font-bold active:bg-gray-50 transition-colors"
+          >
+            <div className="flex items-center gap-2">
               <Filter size={18} className="text-blue-700" />
-              Search Filter
+              <span className="uppercase tracking-wide text-sm">
+                {isMobileFilterOpen ? "Hide Filter" : "Show Filter"}
+              </span>
             </div>
+            {isMobileFilterOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          </button>
 
-            <div className="mb-8">
-              <label className="text-xs font-bold text-gray-500 uppercase mb-3 block tracking-wide">
-                Search Unit
-              </label>
-              <div className="relative">
-                <Search
-                  className="absolute left-3 top-3 text-gray-400"
-                  size={18}
-                />
-                <input
-                  type="text"
-                  placeholder="Ex: Alphard..."
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition-all placeholder:text-gray-400"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+          {/* WRAPPER KONTEN FILTER */}
+          {/* Hidden di mobile jika belum dibuka, Always Block di Desktop */}
+          <div className={`${isMobileFilterOpen ? "block" : "hidden"} lg:block space-y-8`}>
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <div className="flex items-center gap-2 mb-6 text-gray-900 font-bold uppercase tracking-wider text-sm border-b border-gray-100 pb-4">
+                <Filter size={18} className="text-blue-700" />
+                Search Filter
+              </div>
+
+              <div className="mb-8">
+                <label className="text-xs font-bold text-gray-500 uppercase mb-3 block tracking-wide">
+                  Search Unit
+                </label>
+                <div className="relative">
+                  <Search
+                    className="absolute left-3 top-3 text-gray-400"
+                    size={18}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Ex: Alphard..."
+                    className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-700 focus:border-transparent transition-all placeholder:text-gray-400"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs font-bold text-gray-500 uppercase mb-4 block tracking-wide">
+                  Vehicle Category
+                </label>
+                <div className="space-y-3">
+                  {categories.map((cat) => (
+                    <label
+                      key={cat.id}
+                      className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all border ${
+                        categoryFilter === cat.id
+                          ? "bg-blue-50 border-blue-200 text-blue-700"
+                          : "bg-white border-transparent hover:bg-gray-50 text-gray-600"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="category"
+                        checked={categoryFilter === cat.id}
+                        onChange={() => setCategoryFilter(cat.id)}
+                        className="hidden"
+                      />
+                      <cat.icon size={18} />
+                      <span className="text-sm font-bold">{cat.label}</span>
+                      {categoryFilter === cat.id && (
+                        <div className="ml-auto w-2 h-2 rounded-full bg-blue-700" />
+                      )}
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div>
-              <label className="text-xs font-bold text-gray-500 uppercase mb-4 block tracking-wide">
-                Vehicle Category
-              </label>
-              <div className="space-y-3">
-                {categories.map((cat) => (
-                  <label
-                    key={cat.id}
-                    className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all border ${
-                      categoryFilter === cat.id
-                        ? "bg-blue-50 border-blue-200 text-blue-700"
-                        : "bg-white border-transparent hover:bg-gray-50 text-gray-600"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="category"
-                      checked={categoryFilter === cat.id}
-                      onChange={() => setCategoryFilter(cat.id)}
-                      className="hidden"
-                    />
-                    <cat.icon size={18} />
-                    <span className="text-sm font-bold">{cat.label}</span>
-                    {categoryFilter === cat.id && (
-                      <div className="ml-auto w-2 h-2 rounded-full bg-blue-700" />
-                    )}
-                  </label>
-                ))}
-              </div>
+            <div className="bg-blue-700 text-white p-6 rounded-xl text-center">
+              <ShieldCheck size={32} className="mx-auto mb-4 opacity-80" />
+              <h4 className="font-bold text-lg mb-2">Quality Guarantee</h4>
+              <p className="text-blue-100 text-sm leading-relaxed">
+                All units undergo routine inspections for your safety.
+              </p>
             </div>
-          </div>
-
-          <div className="bg-blue-700 text-white p-6 rounded-xl text-center">
-            <ShieldCheck size={32} className="mx-auto mb-4 opacity-80" />
-            <h4 className="font-bold text-lg mb-2">Quality Guarantee</h4>
-            <p className="text-blue-100 text-sm leading-relaxed">
-              All units undergo routine inspections for your safety.
-            </p>
           </div>
         </aside>
 
+        {/* DATA LIST */}
         <div className="w-full lg:w-3/4">
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
             <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">
@@ -272,6 +297,7 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
                             </div>
                           </div>
 
+                          {/* DROPDOWN LOGIC */}
                           {vehicle.priceOptions && vehicle.priceOptions.length > 0 && (
                             <div className="mb-4">
                               <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">
