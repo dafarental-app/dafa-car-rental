@@ -136,7 +136,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
             className="relative h-[400px] lg:h-[600px] w-full rounded-2xl overflow-hidden border border-gray-100 bg-gray-50"
           >
             <Image
-              src="/hero/road.webp"
+              src="https://images.unsplash.com/photo-1660020214290-800d5775a867?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Premium Car"
               fill
               className="object-cover"
