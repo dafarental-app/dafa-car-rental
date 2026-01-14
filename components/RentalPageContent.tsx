@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,6 +16,8 @@ import {
   LucideIcon,
   ChevronDown,
   ChevronUp,
+  ChevronLeft, 
+  ChevronRight, 
   CalendarDays,
 } from "lucide-react";
 
@@ -24,7 +26,6 @@ import Footer from "@/components/Footer";
 import { urlFor } from "@/lib/sanity";
 import { SanityImageSource } from "@sanity/image-url";
 
-// --- DEFINISI TIPE DATA ---
 type FilterType = "all" | "car" | "bike";
 
 interface CategoryOption {
@@ -55,6 +56,8 @@ interface RentalPageContentProps {
   vehicles: Vehicle[];
 }
 
+const ITEMS_PER_PAGE = 9; 
+
 export default function RentalPageContent({
   vehicles,
 }: RentalPageContentProps) {
@@ -64,6 +67,8 @@ export default function RentalPageContent({
     [key: string]: number;
   }>({});
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  
+  const [currentPage, setCurrentPage] = useState(1);
 
   const categories: CategoryOption[] = [
     { id: "all", label: "All Units", icon: Settings },
@@ -81,6 +86,24 @@ export default function RentalPageContent({
       categoryFilter === "all" ? true : item.type === categoryFilter;
     return matchesSearch && matchesCategory;
   });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, categoryFilter]);
+
+  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+
+  const paginatedData = filteredData.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 400, behavior: 'smooth' });
+    }
+  };
 
   const formatRupiah = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -100,9 +123,7 @@ export default function RentalPageContent({
 
   const handleBooking = (vehicle: Vehicle) => {
     const phoneNumber = "6287765089140";
-
     const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
-
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
@@ -225,7 +246,12 @@ export default function RentalPageContent({
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
             <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">
               Showing{" "}
-              <span className="text-gray-900">{filteredData.length}</span>{" "}
+              <span className="text-gray-900">
+                  {filteredData.length > 0 
+                    ? `${(currentPage - 1) * ITEMS_PER_PAGE + 1} - ${Math.min(currentPage * ITEMS_PER_PAGE, filteredData.length)}` 
+                    : 0}
+              </span>{" "}
+              of <span className="text-gray-900">{filteredData.length}</span>{" "}
               Available Units
             </div>
           </div>
@@ -234,9 +260,10 @@ export default function RentalPageContent({
             layout
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
           >
-            <AnimatePresence>
-              {filteredData.length > 0 ? (
-                filteredData.map((vehicle) => {
+            <AnimatePresence mode="wait">
+              {paginatedData.length > 0 ? (
+                // MAPPING PAGINATED DATA
+                paginatedData.map((vehicle) => {
                   const selectedIdx = selectedDurations[vehicle._id] ?? -1;
                   const currentPrice =
                     selectedIdx === -1
@@ -393,6 +420,41 @@ export default function RentalPageContent({
               )}
             </AnimatePresence>
           </motion.div>
+
+          {totalPages > 1 && (
+            <div className="mt-16 flex justify-center items-center gap-2">
+              <button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                 <button
+                 key={page}
+                 onClick={() => goToPage(page)}
+                 className={`w-10 h-10 flex items-center justify-center rounded-lg border text-sm font-bold transition-all ${
+                   currentPage === page
+                     ? "bg-blue-700 text-white border-blue-700 shadow-sm"
+                     : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-blue-700"
+                 }`}
+               >
+                 {page}
+               </button>
+              ))}
+
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          )}
+          
         </div>
       </div>
 
