@@ -52,6 +52,7 @@ interface LandingPageProps {
   vehicles: Vehicle[];
   reviews: Review[];
 }
+
 export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
   const [filter, setFilter] = useState<"all" | "car" | "bike">("all");
 
@@ -61,10 +62,14 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
 
   const safeVehicles = vehicles || [];
 
+  // 1. Filter Logic (Tetap sama)
   const filteredVehicles =
     filter === "all"
       ? safeVehicles
       : safeVehicles.filter((v) => v.type === filter);
+
+  // 2. Display Logic (BARU: Batasi hanya 8 unit untuk ditampilkan)
+  const displayedVehicles = filteredVehicles.slice(0, 8);
 
   const formatRupiah = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -82,10 +87,8 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
     }));
   };
 
-  // --- UPDATE: Menambahkan fungsi handleBooking agar sama dengan Rental Page ---
   const handleBooking = (vehicle: Vehicle) => {
     const phoneNumber = "6287765089140";
-    // Format pesan yang rapi dengan line break dan bold text
     const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
@@ -251,7 +254,8 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             <AnimatePresence>
-              {filteredVehicles.map((vehicle) => {
+              {/* MENGGUNAKAN displayedVehicles (Maks 8) BUKAN filteredVehicles */}
+              {displayedVehicles.map((vehicle) => {
                 const selectedIdx = selectedDurations[vehicle._id] ?? -1;
                 const currentPrice =
                   selectedIdx === -1
@@ -387,6 +391,18 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
               })}
             </AnimatePresence>
           </motion.div>
+
+          {/* BARU: Button View All jika data > 8 */}
+          {filteredVehicles.length > 8 && (
+            <div className="mt-16 flex justify-center">
+              <a href="/rental">
+                <button className="flex items-center justify-center gap-3 px-10 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-lg font-bold uppercase tracking-wider hover:border-gray-900 transition-all hover:bg-gray-900 hover:text-white active:scale-95 cursor-pointer">
+                  View All Vehicles ({filteredVehicles.length}){" "}
+                  <ArrowRight size={20} />
+                </button>
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
