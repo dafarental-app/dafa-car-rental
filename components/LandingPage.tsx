@@ -267,9 +267,9 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     key={vehicle._id}
-                    className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-blue-700 hover:shadow-lg transition-all duration-300 flex flex-col"
+                    className="group bg-white rounded-xl border border-gray-200 relative hover:z-50 hover:shadow-2xl transition-all duration-300 flex flex-col"
                   >
-                    <div className="relative h-64 bg-gray-100 border-b border-gray-200">
+                    <div className="relative h-64 bg-gray-100 border-b border-gray-200 rounded-t-xl">
                       <Image
                         src={
                           vehicle.image
@@ -278,7 +278,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                         }
                         alt={vehicle.name}
                         fill
-                        className="object-cover group-hover:scale-105 transition duration-500 ease-in-out"
+                        className="object-contain rounded-t-xl group-hover:scale-110 group-hover:-translate-y-6 transition duration-500 ease-in-out"
                       />
                       <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider text-gray-900 flex items-center gap-2 shadow-sm">
                         <CalendarDays size={12} className="text-blue-700" />
@@ -366,7 +366,6 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                             </span>
                           </p>
                         </div>
-                        {/* UPDATE: Menggunakan onClick dengan handleBooking agar sama dengan Rental Page */}
                         <button
                           onClick={() => handleBooking(vehicle)}
                           className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"

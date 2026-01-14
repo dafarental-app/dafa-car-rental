@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; 
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,17 +24,24 @@ const Navbar = () => {
           <Link href="/about" className="hover:text-blue-700 transition-colors">
             About
           </Link>
-          <Link href="/rental" className="hover:text-blue-700 transition-colors">
+          <Link
+            href="/rental"
+            className="hover:text-blue-700 transition-colors"
+          >
             Rental
           </Link>
-          <Link href="/contact" className="hover:text-blue-700 transition-colors">
+          <Link
+            href="/contact"
+            className="hover:text-blue-700 transition-colors"
+          >
             Contact
           </Link>
         </div>
-
-        <button className="hidden md:block bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-blue-800 transition-transform active:scale-95">
-          Book Now
-        </button>
+        <a href="http://wa.me/6287765089140">
+          <button className="hidden md:block bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-blue-800 transition-transform active:scale-95">
+            Book Now
+          </button>
+        </a>
 
         <button
           className="md:hidden text-gray-900 focus:outline-none"
@@ -74,7 +81,7 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          
+
           <button className="bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-blue-800 w-full">
             Book Now
           </button>
