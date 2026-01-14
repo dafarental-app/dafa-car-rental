@@ -84,7 +84,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
 
   // --- UPDATE: Menambahkan fungsi handleBooking agar sama dengan Rental Page ---
   const handleBooking = (vehicle: Vehicle) => {
-    const phoneNumber = "6287765089140"; 
+    const phoneNumber = "6287765089140";
     // Format pesan yang rapi dengan line break dan bold text
     const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
@@ -136,7 +136,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
             className="relative h-[400px] lg:h-[600px] w-full rounded-2xl overflow-hidden border border-gray-100 bg-gray-50"
           >
             <Image
-              src="https://images.unsplash.com/photo-1660020214290-800d5775a867?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=1200"
               alt="Premium Car"
               fill
               className="object-cover"
@@ -230,7 +230,11 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                 <button
                   key={item}
                   onClick={() => setFilter(item)}
-                  className={`px-8 py-3 rounded-md text-sm font-bold uppercase tracking-wider transition-all ${filter === item ? "bg-blue-700 text-white shadow-sm" : "text-gray-500 hover:text-gray-900 hover:bg-gray-200"}`}
+                  className={`px-8 py-3 rounded-md text-sm font-bold uppercase tracking-wider transition-all ${
+                    filter === item
+                      ? "bg-blue-700 text-white shadow-sm"
+                      : "text-gray-500 hover:text-gray-900 hover:bg-gray-200"
+                  }`}
                 >
                   {item === "all"
                     ? "All Units"
@@ -267,8 +271,10 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     key={vehicle._id}
+                    // UPDATE: Style disamakan dengan Rental Page (shadow-xl, border, relative, hover:z-50)
                     className="group bg-white rounded-xl border border-gray-200 relative hover:z-50 hover:shadow-2xl transition-all duration-300 flex flex-col"
                   >
+                    {/* UPDATE: Tinggi gambar tetap h-64 sesuai desain awal Landing Page, tapi dengan rounded-t-xl */}
                     <div className="relative h-64 bg-gray-100 border-b border-gray-200 rounded-t-xl">
                       <Image
                         src={
@@ -278,19 +284,24 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                         }
                         alt={vehicle.name}
                         fill
-                        className="object-contain rounded-t-xl group-hover:scale-110 group-hover:-translate-y-6 transition duration-500 ease-in-out"
+                        // UPDATE: Efek pop-out dan rounded-t-xl
+                        className="object-cover rounded-t-xl group-hover:scale-110 group-hover:-translate-y-6 group-hover:shadow-xl transition duration-500 ease-in-out"
                       />
-                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider text-gray-900 flex items-center gap-2 shadow-sm">
+                      <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider text-gray-900 flex items-center gap-2 shadow-sm z-10">
                         <CalendarDays size={12} className="text-blue-700" />
                         {vehicle.year}
                       </div>
                     </div>
 
-                    <div className="p-6 flex flex-col flex-grow">
+                    <div className="p-6 flex flex-col flex-grow bg-white rounded-b-xl z-20 relative">
                       <div className="flex-grow">
                         <div className="flex items-center gap-2 mb-2">
                           <span
-                            className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${vehicle.type === "car" ? "bg-blue-50 text-blue-700" : "bg-orange-50 text-orange-700"}`}
+                            className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${
+                              vehicle.type === "car"
+                                ? "bg-blue-50 text-blue-700"
+                                : "bg-orange-50 text-orange-700"
+                            }`}
                           >
                             {vehicle.type}
                           </span>
@@ -330,7 +341,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                               </label>
                               <div className="relative">
                                 <select
-                                  className="w-full text-xs font-medium bg-gray-50 border border-gray-200 text-gray-700 py-2 pl-3 pr-8 rounded-lg appearance-none focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 cursor-pointer"
+                                  className="w-full text-xs font-medium bg-gray-50 border border-gray-200 text-gray-700 py-2 pl-3 pr-8 rounded-lg appearance-none focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 cursor-pointer transition-all"
                                   value={selectedIdx}
                                   onChange={(e) =>
                                     handleDurationChange(
@@ -366,6 +377,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                             </span>
                           </p>
                         </div>
+                        {/* UPDATE: Tombol menggunakan onClick handleBooking */}
                         <button
                           onClick={() => handleBooking(vehicle)}
                           className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"

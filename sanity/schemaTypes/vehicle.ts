@@ -33,26 +33,78 @@ export default defineType({
     defineField({
       name: 'price',
       title: 'Harga Harian (Default)',
-      description: 'Harga per hari. Wajib diisi.',
+      description: 'Harga normal per satu hari. Wajib diisi.',
       type: 'number',
       validation: (Rule) => Rule.required(),
     }),
+
+    // --- BAGIAN YANG DIUPDATE ---
     defineField({
       name: 'pricing',
       title: 'Opsi Paket Harga (Khusus Motor)',
-      description: 'Isi ini jika ada paket 3 hari, 7 hari, dll.',
+      description: 'Atur paket 3 hari (tampil per hari) atau Bulanan (tampil total).',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
-            { name: 'label', type: 'string', title: 'Label (Contoh: 3 Hari)' },
-            { name: 'price', type: 'number', title: 'Harga (Contoh: 115000)' },
-            { name: 'unit', type: 'string', title: 'Satuan (Contoh: /day)', initialValue: '/day' },
+            defineField({
+              name: 'label',
+              type: 'string',
+              title: 'Nama Paket',
+              description: 'Contoh: "Paket 3 Hari" atau "Paket Bulanan"',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'price',
+              type: 'number',
+              title: 'Nominal Harga',
+              description: 'PENTING: Jika "/day", masukkan harga rata-rata per hari. Jika "Total", masukkan harga total lunas.',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'unit',
+              type: 'string',
+              title: 'Tipe Satuan',
+              description: 'Pilih bagaimana harga ini ditampilkan ke user.',
+              options: {
+                list: [
+                  { title: 'Per Hari (/day)', value: '/day' },
+                  { title: 'Harga Total (Nett)', value: 'total' },
+                ],
+                layout: 'radio', // Tampil sebagai tombol radio button biar gampang dipilih
+              },
+              initialValue: '/day',
+              validation: (Rule) => Rule.required(),
+            }),
           ],
+          preview: {
+            select: {
+              title: 'label',
+              price: 'price',
+              unit: 'unit',
+            },
+            prepare(selection) {
+              const { title, price, unit } = selection
+              // Format tampilan preview di Sanity Studio
+              const formattedPrice = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+              }).format(price)
+              
+              const unitLabel = unit === '/day' ? '/hari' : '(Total)'
+              return {
+                title: title,
+                subtitle: `${formattedPrice} ${unitLabel}`
+              }
+            }
+          }
         },
       ],
     }),
+    // --- AKHIR UPDATE ---
+
     defineField({
       name: 'image',
       title: 'Foto Kendaraan',
