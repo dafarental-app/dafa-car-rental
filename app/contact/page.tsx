@@ -57,11 +57,11 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen font-sans bg-gray-50 text-gray-900 selection:bg-blue-700 selection:text-white">
+    <div className="min-h-screen font-sans bg-gray-50 text-gray-900 selection:bg-blue-700 selection:text-white overflow-x-hidden">
       <Navbar />
 
-      <main className="pt-20 pb-20">
-        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <main className="pt-20">
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 bg-white items-center flex justify-center overflow-hidden">
           <div className="absolute inset-0 z-0 bg-gray-900">
             <Image
               src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

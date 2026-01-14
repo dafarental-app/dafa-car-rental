@@ -82,6 +82,14 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
     }));
   };
 
+  // --- UPDATE: Menambahkan fungsi handleBooking agar sama dengan Rental Page ---
+  const handleBooking = (vehicle: Vehicle) => {
+    const phoneNumber = "6287765089140"; 
+    // Format pesan yang rapi dengan line break dan bold text
+    const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+  };
+
   return (
     <div className="min-h-screen font-sans bg-white text-gray-900 selection:bg-blue-700 selection:text-white">
       <Navbar />
@@ -358,16 +366,13 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                             </span>
                           </p>
                         </div>
-                        {/* UPDATE START: Mengubah button menjadi tag 'a' agar bisa diklik ke WA */}
-                        <a
-                          href={`https://wa.me/6287765089140?text=Halo Admin, saya tertarik untuk menyewa ${vehicle.name}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        {/* UPDATE: Menggunakan onClick dengan handleBooking agar sama dengan Rental Page */}
+                        <button
+                          onClick={() => handleBooking(vehicle)}
                           className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"
                         >
                           <ArrowRight size={18} strokeWidth={2.5} />
-                        </a>
-                        {/* UPDATE END */}
+                        </button>
                       </div>
                     </div>
                   </motion.div>

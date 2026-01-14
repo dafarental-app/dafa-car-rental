@@ -91,21 +91,21 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
     }));
   };
 
-  // --- FUNGSI BARU: HANDLE KLIK KE WHATSAPP ---
+  // --- FUNGSI HANDLE KLIK KE WHATSAPP ---
   const handleBooking = (vehicle: Vehicle) => {
-    const phoneNumber = "6287765089140"; // Ganti 0 dengan 62
+    const phoneNumber = "6287765089140"; 
     
-    // Pesan otomatis berisi Nama Unit dan ID Unit
+    // Pesan otomatis berisi Nama Unit
     const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
     
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 
   return (
-    <main className="min-h-screen bg-white font-sans text-gray-900 selection:bg-blue-700 selection:text-white">
+    <main className="min-h-screen font-sans bg-white text-gray-900 selection:bg-blue-700 selection:text-white overflow-x-hidden">
       <Navbar />
 
-      <header className="pt-32 pb-16 px-6 bg-gray-50 border-b border-gray-200">
+      <header className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 bg-white items-center flex justify-center overflow-hidden border-b border-gray-200">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -127,7 +127,8 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
       </header>
 
       <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12">
-        <aside className="w-full lg:w-1/4 h-fit lg:sticky lg:top-28 space-y-4 lg:space-y-8">
+        {/* SIDEBAR FILTER */}
+        <aside className="w-full lg:w-1/4 h-fit lg:sticky lg:top-28 space-y-4 lg:space-y-8 z-30">
           <button 
             onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
             className="w-full lg:hidden bg-white border border-gray-200 p-4 rounded-xl flex items-center justify-between text-gray-900 font-bold shadow-sm active:scale-[0.98] transition-transform"
@@ -204,6 +205,7 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
           </div>
         </aside>
 
+        {/* MAIN CONTENT GRID */}
         <div className="w-full lg:w-3/4">
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
             <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">
@@ -211,7 +213,8 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
             </div>
           </div>
 
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          {/* GRID COLUMNS: Disesuaikan agar ukuran kartu mirip Landing Page (karena ada sidebar, kita pakai xl:grid-cols-3) */}
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             <AnimatePresence>
               {filteredData.length > 0 ? (
                 filteredData.map((vehicle) => {
@@ -225,16 +228,18 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
                       key={vehicle._id}
-                      className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-blue-700 hover:shadow-xl transition-all duration-300 flex flex-col"
+                      // CARD STYLE: Disamakan persis dengan Landing Page
+                      className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-blue-700 hover:shadow-lg transition-all duration-300 flex flex-col"
                     >
-                      <div className="relative h-56 bg-gray-100 border-b border-gray-100 overflow-hidden">
+                      {/* IMAGE CONTAINER: Diubah jadi h-64 agar sama dengan Landing Page */}
+                      <div className="relative h-64 bg-gray-100 border-b border-gray-200">
                         <Image
                           src={vehicle.image ? urlFor(vehicle.image).url() : "/placeholder.png"}
                           alt={vehicle.name}
                           fill
-                          className="object-cover group-hover:scale-105 transition duration-700 ease-in-out"
+                          className="object-cover group-hover:scale-105 transition duration-500 ease-in-out"
                         />
                         <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider text-gray-900 flex items-center gap-2 shadow-sm">
                           <CalendarDays size={12} className="text-blue-700" />
@@ -278,9 +283,9 @@ export default function RentalPageContent({ vehicles }: RentalPageContentProps) 
                             <p className="text-blue-700 font-black text-lg">{formatRupiah(currentPrice)}<span className="text-xs text-gray-400 font-medium ml-1">{priceUnit}</span></p>
                           </div>
                           
-                          {/* BUTTON DENGAN EVENT ONCLICK KE WA */}
                           <button 
                             onClick={() => handleBooking(vehicle)}
+                            // BUTTON STYLE: Disamakan persis dengan Landing Page
                             className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"
                           >
                             <ArrowRight size={18} strokeWidth={2.5} />

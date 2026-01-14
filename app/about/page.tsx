@@ -58,11 +58,11 @@ const itemVariants = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen font-sans bg-gray-50 text-gray-900 selection:bg-blue-700 selection:text-white">
+    <div className="min-h-screen font-sans bg-gray-50 text-gray-900 selection:bg-blue-700 selection:text-white overflow-x-hidden">
       <Navbar />
 
       <main className="pt-20">
-        <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 bg-white items-center flex justify-center overflow-hidden">
           <div className="absolute inset-0 z-0 bg-gray-900">
             <Image
               src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1920&auto=format&fit=crop"

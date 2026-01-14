@@ -8,7 +8,8 @@ const Footer = () => (
           DAFA RENTAL.
         </h2>
         <p className="text-gray-400 leading-relaxed max-w-md">
-          Your professional transportation partner. Providing a premium fleet with the highest safety standards for business trips and vacations.
+          Your professional transportation partner. Providing a premium fleet
+          with the highest safety standards for business trips and vacations.
         </p>
       </div>
       <div>
@@ -38,9 +39,13 @@ const Footer = () => (
           Contact
         </h4>
         <ul className="space-y-4 font-medium text-gray-400">
-          <li>Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut, Kabupaten Lombok Tengah, Nusa Tenggara Bar. 83573</li>
+          {/* UPDATE: Menambahkan 'leading-relaxed' agar spasi baris alamat lebih rapi saat turun kebawah */}
+          <li className="leading-relaxed">
+            Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut,
+            Kabupaten Lombok Tengah, Nusa Tenggara Bar. 83573
+          </li>
           <li>087765089140</li>
-          <li>dafascooterrentcar@gmail.com</li>
+          <li className="break-all">dafascooterrentcar@gmail.com</li>
         </ul>
       </div>
     </div>
