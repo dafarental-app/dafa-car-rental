@@ -15,7 +15,9 @@ import {
   Settings,
   CalendarDays,
   ChevronDown,
+  Icon,
 } from "lucide-react";
+import { motorRacingHelmet } from "@lucide/lab";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -333,6 +335,16 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                             )}{" "}
                             Unit Ready
                           </div>
+                          {vehicle.type === "scooter" && (
+                            <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
+                              <Icon
+                                iconNode={motorRacingHelmet}
+                                size={14}
+                                className="text-blue-700"
+                              />{" "}
+                              2 Helmets
+                            </div>
+                          )}
                         </div>
 
                         {vehicle.priceOptions &&

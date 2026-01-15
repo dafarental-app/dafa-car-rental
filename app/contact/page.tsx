@@ -2,7 +2,15 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, MessageSquare, Clock, ArrowRight } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  MessageSquare,
+  Clock,
+  ArrowRight,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -47,7 +55,7 @@ export default function ContactPage() {
     e.preventDefault();
 
     // Format nomor HP (Ganti 0 di depan jadi 62)
-    const phoneNumber = "6287765089140"; 
+    const phoneNumber = "6287765089140";
 
     // Susun pesan
     const text = `Halo Admin Dafa Rental, saya ingin bertanya.%0A%0A*Nama:* ${formData.firstName} ${formData.lastName}%0A*Email:* ${formData.email}%0A*Pesan:* ${formData.message}`;
@@ -184,7 +192,6 @@ export default function ContactPage() {
                   </button>
                 </form>
                 {/* FORM END */}
-
               </motion.div>
 
               <motion.div
@@ -209,9 +216,21 @@ export default function ContactPage() {
                         <div>
                           <h4 className="font-bold text-lg">Head Office</h4>
                           <p className="text-gray-400 text-sm mt-1 leading-relaxed">
-                            Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut, Kabupaten Lombok Tengah, 
+                            Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu,
+                            Kec. Pujut, Kabupaten Lombok Tengah,
                             <br /> Nusa Tenggara Bar. 83573
                           </p>
+                          <Link
+                            href="https://maps.app.goo.gl/uHqfBo7ujzNb8bAW9"
+                            target="_blank"
+                            className="inline-flex items-center gap-2 mt-3 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group"
+                          >
+                            Get Directions
+                            <ArrowRight
+                              size={16}
+                              className="group-hover:translate-x-1 transition-transform"
+                            />
+                          </Link>
                         </div>
                       </li>
                       <li className="flex items-start gap-4">

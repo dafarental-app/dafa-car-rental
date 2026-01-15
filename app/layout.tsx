@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dafa Rental Lombok",
-  description: "Dafa Rental Lombok - Your Trusted Car Rental Service in Lombok",
+  title: "Dafa Scooter Lombok Car Rental",
+  description: "Your Trusted Car Rental Service in Lombok",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

@@ -19,7 +19,9 @@ import {
   ChevronRight,
   CalendarDays,
   Motorbike,
+  Icon,
 } from "lucide-react";
+import { motorRacingHelmet } from "@lucide/lab";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -337,6 +339,16 @@ export default function RentalPageContent({
                               )}{" "}
                               Unit Ready
                             </div>
+                            {vehicle.type === "scooter" && (
+                              <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
+                                <Icon
+                                  iconNode={motorRacingHelmet}
+                                  size={14}
+                                  className="text-blue-700"
+                                />{" "}
+                                2 Helmets
+                              </div>
+                            )}
                           </div>
 
                           {vehicle.priceOptions &&
