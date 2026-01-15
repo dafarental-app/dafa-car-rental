@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,9 +12,27 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div className="text-2xl font-black tracking-tighter text-gray-900">
-          <Link href="/" onClick={() => setIsOpen(false)}>
-            {" "}
-            DAFA<span className="text-blue-700">RENTAL.</span>{" "}
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2"
+          >
+            <Image
+              src="/logo.svg"
+              alt="Logo"
+              width={80}
+              height={80}
+              className="object-contain"
+            />
+            <div className="flex flex-col">
+              <span className="leading-none text-[18px] md:text-xl lg:text-2xl">
+                Dafa
+                <span className="text-blue-700"> Scooter Lombok</span>
+              </span>
+              <span className="text-[18px] md:text-xl lg:text-2xl leading-none text-blue-700">
+                Car Rental.
+              </span>
+            </div>
           </Link>
         </div>
 
@@ -38,7 +57,7 @@ const Navbar = () => {
           </Link>
         </div>
         <a href="http://wa.me/6287765089140">
-          <button className="hidden md:block bg-blue-700 text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-blue-800 transition-transform active:scale-95">
+          <button className="hidden md:block bg-blue-700 text-white px-6 py-3 md:px-3 md:py-2 md:ml-2 lg:px-6 lg:py-3 lg:ml-2 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-blue-800 transition-transform active:scale-95">
             Book Now
           </button>
         </a>

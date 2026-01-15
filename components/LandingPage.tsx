@@ -105,7 +105,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="inline-block px-4 py-2 mb-8 text-xs font-bold tracking-widest text-blue-700 uppercase bg-blue-50 border border-blue-100 rounded-md">
-              Premium Transport Solutions
+              Premium Transport Solutions in Lombok
             </div>
             <h1 className="text-5xl lg:text-7xl font-black tracking-tighter leading-[1.1] mb-8 text-gray-900">
               Your Journey,
@@ -116,8 +116,8 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
-              Self-drive car rental with professional standards. Well-maintained
-              fleet, transparent process, and 24/7 support.
+              Self-drive car rental with professional standards in Lombok.
+              Well-maintained fleet, transparent process, and 24/7 support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="/rental">
@@ -242,8 +242,8 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                   {item === "all"
                     ? "All Units"
                     : item === "car"
-                    ? "Cars"
-                    : "Bikes"}
+                      ? "Cars"
+                      : "Bikes"}
                 </button>
               ))}
             </div>
@@ -472,7 +472,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
           <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-8 leading-tight">
             Ready for Your
             <br />
-            Professional Journey?
+            Journey in Lombok?
           </h2>
           <p className="text-blue-100 text-xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
             Book your unit now to secure availability. Our customer service team
