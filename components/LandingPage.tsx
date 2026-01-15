@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Car,
-  Bike,
+  Scooter,
   ArrowRight,
   Star,
   ShieldCheck,
@@ -21,6 +21,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { urlFor } from "@/lib/sanity";
 import type { SanityImageSource } from "@sanity/image-url";
+import { SiWhatsapp } from "react-icons/si";
 
 export interface PriceOption {
   label: string;
@@ -30,7 +31,7 @@ export interface PriceOption {
 export interface Vehicle {
   _id: string;
   name: string;
-  type: "car" | "bike";
+  type: "car" | "scooter";
   image: SanityImageSource;
   year: number;
   transmission: string;
@@ -54,7 +55,7 @@ interface LandingPageProps {
 }
 
 export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
-  const [filter, setFilter] = useState<"all" | "car" | "bike">("all");
+  const [filter, setFilter] = useState<"all" | "car" | "scooter">("all");
 
   const [selectedDurations, setSelectedDurations] = useState<{
     [key: string]: number;
@@ -229,7 +230,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
               </p>
             </div>
             <div className="flex p-1 bg-gray-100 rounded-lg border border-gray-200">
-              {(["all", "car", "bike"] as const).map((item) => (
+              {(["all", "car", "scooter"] as const).map((item) => (
                 <button
                   key={item}
                   onClick={() => setFilter(item)}
@@ -243,7 +244,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                     ? "All Units"
                     : item === "car"
                       ? "Cars"
-                      : "Bikes"}
+                      : "Scooters"}
                 </button>
               ))}
             </div>
@@ -328,7 +329,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                             {vehicle.type === "car" ? (
                               <Car size={14} className="text-blue-700" />
                             ) : (
-                              <Bike size={14} className="text-blue-700" />
+                              <Scooter size={14} className="text-blue-700" />
                             )}{" "}
                             Unit Ready
                           </div>
@@ -382,7 +383,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                           onClick={() => handleBooking(vehicle)}
                           className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"
                         >
-                          <ArrowRight size={18} strokeWidth={2.5} />
+                          <SiWhatsapp size={18} />
                         </button>
                       </div>
                     </div>

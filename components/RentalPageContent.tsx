@@ -9,24 +9,25 @@ import {
   Fuel,
   Users,
   Car,
-  Bike,
-  ArrowRight,
+  Scooter,
   ShieldCheck,
   Settings,
   LucideIcon,
   ChevronDown,
   ChevronUp,
-  ChevronLeft, 
-  ChevronRight, 
+  ChevronLeft,
+  ChevronRight,
   CalendarDays,
+  Motorbike,
 } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { urlFor } from "@/lib/sanity";
 import { SanityImageSource } from "@sanity/image-url";
+import { SiWhatsapp } from "react-icons/si";
 
-type FilterType = "all" | "car" | "bike";
+type FilterType = "all" | "car" | "scooter";
 
 interface CategoryOption {
   id: FilterType;
@@ -42,7 +43,7 @@ export interface PriceOption {
 export interface Vehicle {
   _id: string;
   name: string;
-  type: "car" | "bike";
+  type: "car" | "scooter";
   image: SanityImageSource;
   year: number;
   transmission: string;
@@ -56,7 +57,7 @@ interface RentalPageContentProps {
   vehicles: Vehicle[];
 }
 
-const ITEMS_PER_PAGE = 9; 
+const ITEMS_PER_PAGE = 9;
 
 export default function RentalPageContent({
   vehicles,
@@ -67,13 +68,13 @@ export default function RentalPageContent({
     [key: string]: number;
   }>({});
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const categories: CategoryOption[] = [
     { id: "all", label: "All Units", icon: Settings },
     { id: "car", label: "Cars", icon: Car },
-    { id: "bike", label: "Bikes", icon: Bike },
+    { id: "scooter", label: "Scooters", icon: Motorbike },
   ];
 
   const safeVehicles = vehicles || [];
@@ -101,7 +102,7 @@ export default function RentalPageContent({
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      window.scrollTo({ top: 400, behavior: 'smooth' });
+      window.scrollTo({ top: 400, behavior: "smooth" });
     }
   };
 
@@ -247,9 +248,9 @@ export default function RentalPageContent({
             <div className="text-sm font-bold text-gray-500 uppercase tracking-wide">
               Showing{" "}
               <span className="text-gray-900">
-                  {filteredData.length > 0 
-                    ? `${(currentPage - 1) * ITEMS_PER_PAGE + 1} - ${Math.min(currentPage * ITEMS_PER_PAGE, filteredData.length)}` 
-                    : 0}
+                {filteredData.length > 0
+                  ? `${(currentPage - 1) * ITEMS_PER_PAGE + 1} - ${Math.min(currentPage * ITEMS_PER_PAGE, filteredData.length)}`
+                  : 0}
               </span>{" "}
               of <span className="text-gray-900">{filteredData.length}</span>{" "}
               Available Units
@@ -332,7 +333,7 @@ export default function RentalPageContent({
                               {vehicle.type === "car" ? (
                                 <Car size={14} className="text-blue-700" />
                               ) : (
-                                <Bike size={14} className="text-blue-700" />
+                                <Scooter size={14} className="text-blue-700" />
                               )}{" "}
                               Unit Ready
                             </div>
@@ -389,7 +390,7 @@ export default function RentalPageContent({
                             onClick={() => handleBooking(vehicle)}
                             className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-900 group-hover:bg-blue-700 group-hover:border-blue-700 group-hover:text-white transition-colors cursor-pointer"
                           >
-                            <ArrowRight size={18} strokeWidth={2.5} />
+                            <SiWhatsapp size={18} />
                           </button>
                         </div>
                       </div>
@@ -430,20 +431,22 @@ export default function RentalPageContent({
               >
                 <ChevronLeft size={20} />
               </button>
-              
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                 <button
-                 key={page}
-                 onClick={() => goToPage(page)}
-                 className={`w-10 h-10 flex items-center justify-center rounded-lg border text-sm font-bold transition-all ${
-                   currentPage === page
-                     ? "bg-blue-700 text-white border-blue-700 shadow-sm"
-                     : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-blue-700"
-                 }`}
-               >
-                 {page}
-               </button>
-              ))}
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => goToPage(page)}
+                    className={`w-10 h-10 flex items-center justify-center rounded-lg border text-sm font-bold transition-all ${
+                      currentPage === page
+                        ? "bg-blue-700 text-white border-blue-700 shadow-sm"
+                        : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-blue-700"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
 
               <button
                 onClick={() => goToPage(currentPage + 1)}
@@ -454,7 +457,6 @@ export default function RentalPageContent({
               </button>
             </div>
           )}
-          
         </div>
       </div>
 

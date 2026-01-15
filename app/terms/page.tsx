@@ -2,7 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FileText, Shield, AlertCircle, Check, ArrowRight, HelpCircle } from "lucide-react";
+import {
+  FileText,
+  Shield,
+  AlertCircle,
+  Check,
+  ArrowRight,
+  HelpCircle,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,10 +23,21 @@ const TERMS_SECTIONS = [
     icon: <UserCheckIcon />,
     content: (
       <ul className="list-disc pl-5 space-y-2 text-gray-600">
-        <li>Renters must be at least <strong>21 years old</strong>.</li>
-        <li>Must possess a valid driver's license (SIM A for cars, SIM C for bikes) that has been active for at least 1 year.</li>
-        <li>International renters must present a valid International Driving Permit (IDP) alongside their national license.</li>
-        <li>We reserve the right to refuse service if the driver is deemed unfit to drive.</li>
+        <li>
+          Renters must be at least <strong>21 years old</strong>.
+        </li>
+        <li>
+          Must possess a valid driver's license (SIM A for cars, SIM C for
+          scooters) that has been active for at least 1 year.
+        </li>
+        <li>
+          International renters must present a valid International Driving
+          Permit (IDP) alongside their national license.
+        </li>
+        <li>
+          We reserve the right to refuse service if the driver is deemed unfit
+          to drive.
+        </li>
       </ul>
     ),
   },
@@ -30,10 +48,15 @@ const TERMS_SECTIONS = [
     content: (
       <div className="space-y-4 text-gray-600">
         <p>
-          To secure a booking, a down payment of <strong>50%</strong> is required via bank transfer or credit card. The remaining balance must be settled upon vehicle pickup.
+          To secure a booking, a down payment of <strong>50%</strong> is
+          required via bank transfer or credit card. The remaining balance must
+          be settled upon vehicle pickup.
         </p>
         <p>
-          A refundable security deposit of <strong>IDR 1,000,000</strong> (for cars) or <strong>IDR 500,000</strong> (for bikes) is required and will be returned within 24 hours after the rental period ends, provided no damage or fines occur.
+          A refundable security deposit of <strong>IDR 1,000,000</strong> (for
+          cars) or <strong>IDR 500,000</strong> (for scooters) is required and
+          will be returned within 24 hours after the rental period ends,
+          provided no damage or fines occur.
         </p>
       </div>
     ),
@@ -46,9 +69,17 @@ const TERMS_SECTIONS = [
       <div className="space-y-4 text-gray-600">
         <p>We understand plans change. Our cancellation fees are as follows:</p>
         <ul className="list-disc pl-5 space-y-2">
-          <li><strong>48+ hours before pickup:</strong> Free cancellation (100% refund).</li>
-          <li><strong>24-48 hours before pickup:</strong> 50% refund of the down payment.</li>
-          <li><strong>Less than 24 hours:</strong> No refund.</li>
+          <li>
+            <strong>48+ hours before pickup:</strong> Free cancellation (100%
+            refund).
+          </li>
+          <li>
+            <strong>24-48 hours before pickup:</strong> 50% refund of the down
+            payment.
+          </li>
+          <li>
+            <strong>Less than 24 hours:</strong> No refund.
+          </li>
         </ul>
       </div>
     ),
@@ -59,9 +90,19 @@ const TERMS_SECTIONS = [
     icon: <CarIcon />,
     content: (
       <ul className="list-disc pl-5 space-y-2 text-gray-600">
-        <li>Vehicles are for <strong>normal road use only</strong>. Off-roading, racing, or using the vehicle for illegal purposes is strictly prohibited.</li>
-        <li>Smoking inside the vehicle is strictly prohibited. A cleaning fee of IDR 500,000 will be charged for violations.</li>
-        <li>The vehicle must not be taken outside the agreed city limits without prior written consent from Dafa Rental.</li>
+        <li>
+          Vehicles are for <strong>normal road use only</strong>. Off-roading,
+          racing, or using the vehicle for illegal purposes is strictly
+          prohibited.
+        </li>
+        <li>
+          Smoking inside the vehicle is strictly prohibited. A cleaning fee of
+          IDR 500,000 will be charged for violations.
+        </li>
+        <li>
+          The vehicle must not be taken outside the agreed city limits without
+          prior written consent from Dafa Rental.
+        </li>
       </ul>
     ),
   },
@@ -72,11 +113,18 @@ const TERMS_SECTIONS = [
     content: (
       <div className="space-y-4 text-gray-600">
         <p>
-          All our vehicles come with standard insurance. However, the renter is liable for:
+          All our vehicles come with standard insurance. However, the renter is
+          liable for:
         </p>
         <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Own Risk (OR):</strong> IDR 300,000 per incident for minor accidents.</li>
-          <li>Tire punctures, lost keys, or interior damage (not covered by insurance).</li>
+          <li>
+            <strong>Own Risk (OR):</strong> IDR 300,000 per incident for minor
+            accidents.
+          </li>
+          <li>
+            Tire punctures, lost keys, or interior damage (not covered by
+            insurance).
+          </li>
           <li>Traffic fines (E-Tilang) incurred during the rental period.</li>
         </ul>
       </div>
@@ -84,11 +132,41 @@ const TERMS_SECTIONS = [
   },
 ];
 
-function UserCheckIcon() { return <div className="p-2 bg-blue-100 text-blue-700 rounded-lg"><Check size={20} /></div> }
-function CreditCardIcon() { return <div className="p-2 bg-blue-100 text-blue-700 rounded-lg"><FileText size={20} /></div> }
-function AlertIcon() { return <div className="p-2 bg-orange-100 text-orange-700 rounded-lg"><AlertCircle size={20} /></div> }
-function CarIcon() { return <div className="p-2 bg-blue-100 text-blue-700 rounded-lg"><ArrowRight size={20} /></div> }
-function ShieldIcon() { return <div className="p-2 bg-green-100 text-green-700 rounded-lg"><Shield size={20} /></div> }
+function UserCheckIcon() {
+  return (
+    <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
+      <Check size={20} />
+    </div>
+  );
+}
+function CreditCardIcon() {
+  return (
+    <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
+      <FileText size={20} />
+    </div>
+  );
+}
+function AlertIcon() {
+  return (
+    <div className="p-2 bg-orange-100 text-orange-700 rounded-lg">
+      <AlertCircle size={20} />
+    </div>
+  );
+}
+function CarIcon() {
+  return (
+    <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
+      <ArrowRight size={20} />
+    </div>
+  );
+}
+function ShieldIcon() {
+  return (
+    <div className="p-2 bg-green-100 text-green-700 rounded-lg">
+      <Shield size={20} />
+    </div>
+  );
+}
 
 export default function TermsPage() {
   return (
@@ -122,7 +200,8 @@ export default function TermsPage() {
                 Terms of Service.
               </h1>
               <p className="text-lg text-gray-300 max-w-xl mx-auto font-medium">
-                Please read these terms carefully before booking. Transparency is key to a smooth journey.
+                Please read these terms carefully before booking. Transparency
+                is key to a smooth journey.
               </p>
             </motion.div>
           </div>
@@ -130,7 +209,6 @@ export default function TermsPage() {
 
         <section className="py-20 px-6">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-8">
                 <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
@@ -140,8 +218,8 @@ export default function TermsPage() {
                   </h3>
                   <nav className="space-y-3">
                     {TERMS_SECTIONS.map((section) => (
-                      <Link 
-                        key={section.id} 
+                      <Link
+                        key={section.id}
                         href={`#${section.id}`}
                         className="block text-gray-600 hover:text-blue-700 hover:translate-x-1 transition-all text-sm font-medium"
                       >
@@ -152,17 +230,22 @@ export default function TermsPage() {
                 </div>
 
                 <div className="bg-blue-800 text-black p-8 rounded-3xl shadow-xl relative overflow-hidden">
-                    <div className="relative z-10">
-                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-                            <HelpCircle size={24} />
-                        </div>
-                        <h4 className="font-bold text-lg mb-2">Still confused?</h4>
-                        <p className="text-blue-200 text-sm mb-6">Our team can explain these terms in detail.</p>
-                        <Link href="/contact" className="text-blue text-sm font-bold underline decoration-blue-400 underline-offset-4">
-                            Contact Support
-                        </Link>
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                      <HelpCircle size={24} />
                     </div>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 translate-x-10 -translate-y-10"></div>
+                    <h4 className="font-bold text-lg mb-2">Still confused?</h4>
+                    <p className="text-blue-200 text-sm mb-6">
+                      Our team can explain these terms in detail.
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="text-blue text-sm font-bold underline decoration-blue-400 underline-offset-4"
+                    >
+                      Contact Support
+                    </Link>
+                  </div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 translate-x-10 -translate-y-10"></div>
                 </div>
               </div>
             </div>
@@ -191,15 +274,18 @@ export default function TermsPage() {
               ))}
 
               <div className="bg-gray-100 p-8 rounded-[2rem] text-center mt-12">
-                  <p className="text-gray-600 mb-6 font-medium">
-                      By clicking "Agree & Continue" during the booking process, you acknowledge that you have read and understood these terms.
-                  </p>
-                  <Link href="/rental" className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all active:scale-95 shadow-lg shadow-blue-900/20">
-                      I Agree, Let's Book <ArrowRight size={18} />
-                  </Link>
+                <p className="text-gray-600 mb-6 font-medium">
+                  By clicking "Agree & Continue" during the booking process, you
+                  acknowledge that you have read and understood these terms.
+                </p>
+                <Link
+                  href="/rental"
+                  className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all active:scale-95 shadow-lg shadow-blue-900/20"
+                >
+                  I Agree, Let's Book <ArrowRight size={18} />
+                </Link>
               </div>
             </div>
-
           </div>
         </section>
       </main>
