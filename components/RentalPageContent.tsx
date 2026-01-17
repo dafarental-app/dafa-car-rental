@@ -386,14 +386,20 @@ export default function RentalPageContent({
                         <div className="pt-6 border-t border-gray-100 flex justify-between items-end">
                           <div>
                             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wide mb-1">
-                              {selectedIdx === -1
+                              {selectedIdx === -1 ||
+                              selectedIdx === 0 ||
+                              selectedIdx === 1
                                 ? "Starts From"
                                 : "Total Price"}
                             </p>
                             <p className="text-blue-700 font-black text-lg">
                               {formatRupiah(currentPrice)}
                               <span className="text-xs text-gray-400 font-medium ml-1">
-                                / Day
+                                {selectedIdx === -1 ||
+                                selectedIdx === 0 ||
+                                selectedIdx === 1
+                                  ? " / Day"
+                                  : ""}
                               </span>
                             </p>
                           </div>
