@@ -28,6 +28,7 @@ import { SiWhatsapp } from "react-icons/si";
 export interface PriceOption {
   label: string;
   price: number;
+  unit?: string;
 }
 
 export interface Vehicle {
@@ -360,7 +361,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                                   onChange={(e) =>
                                     handleDurationChange(
                                       vehicle._id,
-                                      parseInt(e.target.value)
+                                      parseInt(e.target.value),
                                     )
                                   }
                                 >
@@ -382,20 +383,21 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
                       <div className="pt-6 border-t border-gray-100 flex justify-between items-end">
                         <div>
                           <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wide mb-1">
-                            {selectedIdx === -1 ||
-                            selectedIdx === 0 ||
-                            selectedIdx === 1
-                              ? "Starts From"
-                              : "Total Price"}
+                            {selectedIdx !== -1 &&
+                            vehicle.priceOptions?.[selectedIdx]?.unit ===
+                              "total"
+                              ? "Total Price"
+                              : "Starts From"}
                           </p>
                           <p className="text-blue-700 font-black text-lg">
                             {formatRupiah(currentPrice)}
                             <span className="text-xs text-gray-400 font-medium ml-1">
-                              {selectedIdx === -1 ||
-                              selectedIdx === 0 ||
-                              selectedIdx === 1
-                                ? " / Day"
-                                : ""}
+                              {selectedIdx === -1
+                                ? "/ Day"
+                                : vehicle.priceOptions?.[selectedIdx]?.unit ===
+                                    "total"
+                                  ? ""
+                                  : "/ Day"}
                             </span>
                           </p>
                         </div>
