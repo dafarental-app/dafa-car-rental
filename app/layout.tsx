@@ -13,8 +13,53 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dafa Scooter Lombok Car Rental",
-  description: "Your Trusted Car Rental Service in Lombok",
+  metadataBase: new URL("https://www.dafarentalscooterlombok.com"),
+  title: {
+    default: "Dafa Scooter Lombok Car Rental | Sewa Mobil & Motor Lepas Kunci",
+    template: "%s | Dafa Scooter Lombok",
+  },
+  description:
+    "Jasa sewa mobil dan motor lepas kunci di Lombok. Armada terawat, harga transparan, dan layanan 24/7. Sewa Alphard, Innova, Avanza, Nmax, PCX, dan lainnya.",
+  keywords: [
+    "Sewa Mobil Lombok",
+    "Rental Mobil Lombok",
+    "Sewa Motor Lombok",
+    "Rental Motor Lombok",
+    "Sewa Mobil Lepas Kunci",
+    "Car Rental Lombok",
+    "Scooter Rental Lombok",
+    "Dafa Rental Lombok",
+  ],
+  authors: [{ name: "Dafa Scooter Lombok" }],
+  creator: "Dafa Scooter Lombok",
+  publisher: "Dafa Scooter Lombok",
+  openGraph: {
+    title: "Dafa Scooter Lombok Car Rental | Sewa Mobil & Motor Murah",
+    description:
+      "Solusi transportasi terbaik di Lombok. Sewa mobil dan motor lepas kunci dengan kondisi prima dan harga bersahabat.",
+    url: "https://www.dafarentalscooterlombok.com",
+    siteName: "Dafa Scooter Lombok",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", // Pastikan file ini ada atau ganti dengan URL gambar yang valid
+        width: 1200,
+        height: 630,
+        alt: "Dafa Scooter Lombok Car Rental",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dafa Scooter Lombok Car Rental",
+    description:
+      "Sewa mobil dan motor lepas kunci di Lombok. Armada terawat, harga transparan.",
+    images: ["/og-image.jpg"], // Sama dengan OG Image
+  },
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/logo.svg",
   },
@@ -25,11 +70,57 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AutoRental",
+    name: "Dafa Scooter Lombok Car Rental",
+    image: "https://www.dafarentalscooterlombok.com/logo.svg",
+    "@id": "https://www.dafarentalscooterlombok.com",
+    url: "https://www.dafarentalscooterlombok.com",
+    telephone: "+6287765089140",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress:
+        "Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut",
+      addressLocality: "Kabupaten Lombok Tengah",
+      addressRegion: "Nusa Tenggara Barat",
+      postalCode: "83573",
+      addressCountry: "ID",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -8.739184, // Koordinat perkiraan dari Google Maps link
+      longitude: 116.276789,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "00:00",
+      closes: "23:59",
+    },
+    priceRange: "$$",
+    sameAs: [
+      "https://www.instagram.com/dafascooterlombok", // Ganti dengan link sosmed asli jika ada
+    ],
+  };
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>
