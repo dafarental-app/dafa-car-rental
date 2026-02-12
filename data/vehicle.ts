@@ -149,7 +149,7 @@ export const reviews: Review[] = [
     id: 1,
     name: "Dimas Anggara",
     role: "Family Vacation",
-    text: "Sewa Alphard disini sangat memuaskan. Mobil bersih, wangi, dan driver on-time. Anak-anak senang!",
+    text: "The Alphard rental here was very satisfying. The car was clean, smelled nice, and the driver was on time. The kids were happy!",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww",
@@ -158,7 +158,7 @@ export const reviews: Review[] = [
     id: 2,
     name: "Sarah Wijaya",
     role: "Solo Traveler",
-    text: "Sewa Vespa buat keliling kota seharian seru banget. Proses booking cepat, ga ribet pakai KTP doang.",
+    text: "Renting a Vespa to explore the city all day was really fun. The booking process was fast, no hassle, just needed an ID card.",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fHww",
@@ -167,7 +167,7 @@ export const reviews: Review[] = [
     id: 3,
     name: "Budi Santoso",
     role: "Business Trip",
-    text: "Harga kompetitif dibanding rental lain. Civic-nya kondisi prima, AC dingin. Recommended buat urusan bisnis.",
+    text: "The price was competitive compared to other rentals. The Civic was in prime condition with cold AC. Recommended for business trips.",
     rating: 4,
     avatar:
       "https://images.unsplash.com/photo-1654110455429-cf322b40a906?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXZhdGFyfGVufDB8fDB8fHww",
@@ -176,7 +176,7 @@ export const reviews: Review[] = [
     id: 4,
     name: "Jessica Tan",
     role: "Honeymoon",
-    text: "Pelayanan ramah banget adminnya. Jimny-nya keren buat foto-foto di gunung. Makasih GoRent!",
+    text: "The service from the admin was very friendly. The Jimny was cool for taking photos in the mountains. Thanks, GoRent!",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww",
