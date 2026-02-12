@@ -45,7 +45,7 @@ export default function ContactPage() {
 
   // 2. Fungsi untuk handle perubahan input
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -58,7 +58,7 @@ export default function ContactPage() {
     const phoneNumber = "6287765089140";
 
     // Susun pesan
-    const text = `Halo Admin Dafa Rental, saya ingin bertanya.%0A%0A*Nama:* ${formData.firstName} ${formData.lastName}%0A*Email:* ${formData.email}%0A*Pesan:* ${formData.message}`;
+    const text = `Hi, Admin Dafa Rental. I would like to ask you a question.%0A%0A*Name:* ${formData.firstName} ${formData.lastName}%0A*Email:* ${formData.email}%0A*Message:* ${formData.message}`;
 
     // Redirect ke WhatsApp
     window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank");
@@ -150,7 +150,7 @@ export default function ContactPage() {
                         name="lastName" // Tambahkan name
                         value={formData.lastName} // Bind value
                         onChange={handleChange} // Bind onChange
-                        placeholder="Doe"
+                        placeholder="Mayer"
                         className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-700 transition-all"
                         required
                       />
@@ -166,7 +166,7 @@ export default function ContactPage() {
                       name="email" // Tambahkan name
                       value={formData.email} // Bind value
                       onChange={handleChange} // Bind onChange
-                      placeholder="john@example.com"
+                      placeholder="johnmayer@example.com"
                       className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-700 focus:ring-1 focus:ring-blue-700 transition-all"
                       required
                     />
@@ -216,12 +216,11 @@ export default function ContactPage() {
                         <div>
                           <h4 className="font-bold text-lg">Head Office</h4>
                           <p className="text-gray-400 text-sm mt-1 leading-relaxed">
-                            Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu,
-                            Kec. Pujut, Kabupaten Lombok Tengah,
-                            <br /> Nusa Tenggara Bar. 83573
+                            Ketara, Pujut, Central Lombok, <br /> West Nusa
+                            Tenggara 83573
                           </p>
                           <Link
-                            href="https://maps.app.goo.gl/uHqfBo7ujzNb8bAW9"
+                            href="https://maps.app.goo.gl/8Sny1V3zU7ZkmiZT6"
                             target="_blank"
                             className="inline-flex items-center gap-2 mt-3 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group"
                           >
@@ -240,7 +239,7 @@ export default function ContactPage() {
                         <div>
                           <h4 className="font-bold text-lg">Call Us</h4>
                           <p className="text-gray-400 text-sm mt-1">
-                            +62 812 3456 7890
+                            087765089140
                           </p>
                           <p className="text-gray-500 text-xs mt-1">
                             Mon - Sun (24 Hours)

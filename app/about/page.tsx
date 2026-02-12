@@ -199,8 +199,7 @@ export default function AboutPage() {
                   <div>
                     <h4 className="font-bold text-lg">Head Office</h4>
                     <p className="text-gray-400 text-sm mt-0.5 leading-snug">
-                      Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec.
-                      Pujut, Kabupaten Lombok Tengah, <br /> Nusa Tenggara Bar.
+                      Ketara, Pujut, Central Lombok, <br /> West Nusa Tenggara
                       83573
                     </p>
                   </div>
@@ -219,7 +218,7 @@ export default function AboutPage() {
               </div>
 
               <Link
-                href="https://maps.app.goo.gl/uHqfBo7ujzNb8bAW9"
+                href="https://maps.app.goo.gl/8Sny1V3zU7ZkmiZT6"
                 className="group inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider transition-all active:scale-95 hover"
               >
                 Get Directions
@@ -238,7 +237,7 @@ export default function AboutPage() {
               style={{ height: "500px" }}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4050616.8368836106!2d108.90530239999998!3d-7.500480414777555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdaf0076008447%3A0x213d8be3b8d54e07!2sDafa%20rencar%20mobil%20motor!5e0!3m2!1sid!2sid!4v1768472934679!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3394.6132189483887!2d116.27160460838776!3d-8.78378480825327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdafe7e16a0fa9%3A0x5c17f095047dacd0!2sDAFA%20SCOOTER%20LOMBOK%20%26%20CAR%20RENTAL!5e0!3m2!1sid!2sid!4v1770894031057!5m2!1sid!2sid"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

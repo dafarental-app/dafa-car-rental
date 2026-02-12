@@ -93,7 +93,7 @@ export default function LandingPage({ vehicles, reviews }: LandingPageProps) {
 
   const handleBooking = (vehicle: Vehicle) => {
     const phoneNumber = "6287765089140";
-    const message = `Halo Admin Dafa Rental, saya tertarik untuk menyewa unit ini:%0A%0A*Unit:* ${vehicle.name}%0A* Mohon informasi ketersediaannya.`;
+    const message = `Hi, Admin Dafa Rental. I would like to rent this unit:%0A%0A*Unit:* ${vehicle.name}%0A* Please provide information about its availability.`;
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
 

@@ -39,12 +39,12 @@ const Footer = () => (
           Contact
         </h4>
         <ul className="space-y-4 font-medium text-gray-400">
-          {/* UPDATE: Menambahkan 'leading-relaxed' agar spasi baris alamat lebih rapi saat turun kebawah */}
           <li className="leading-relaxed">
-            Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut,
-            Kabupaten Lombok Tengah, Nusa Tenggara Bar. 83573
+            Ketara, Pujut, Central Lombok, West Nusa Tenggara 83573
           </li>
-          <li>087765089140</li>
+          <li>
+            087765089140 <br /> Mon - Sun (24 Hours)
+          </li>
           <li className="break-all">dafascooterrentcar@gmail.com</li>
         </ul>
       </div>

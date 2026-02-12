@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.dafarentalscooterlombok.com"),
   title: {
-    default: "Dafa Scooter Lombok Car Rental | Sewa Mobil & Motor Lepas Kunci",
+    default: "Dafa Scooter Lombok Car Rental | Rent Car & Scooter",
     template: "%s | Dafa Scooter Lombok",
   },
   description:
-    "Jasa sewa mobil dan motor lepas kunci di Lombok. Armada terawat, harga transparan, dan layanan 24/7. Sewa Alphard, Innova, Avanza, Nmax, PCX, dan lainnya.",
+    "Rent Car & Scooter in Lombok. Best price and quality. Free delivery to airport and hotel. 24/7 service.",
   keywords: [
     "Sewa Mobil Lombok",
     "Rental Mobil Lombok",
@@ -29,14 +29,21 @@ export const metadata: Metadata = {
     "Car Rental Lombok",
     "Scooter Rental Lombok",
     "Dafa Rental Lombok",
+    "Dafa Scooter Lombok",
+    "Scooter Rental",
+    "Rent a Scooter",
+    "Rent a Car",
+    "Cheap Scooter & Car Rent Lombok",
+    "Scooter Rent Lombok",
+    "Car Rent Lombok",
   ],
   authors: [{ name: "Dafa Scooter Lombok" }],
   creator: "Dafa Scooter Lombok",
   publisher: "Dafa Scooter Lombok",
   openGraph: {
-    title: "Dafa Scooter Lombok Car Rental | Sewa Mobil & Motor Murah",
+    title: "Dafa Scooter Lombok Car Rental | Rent Car & Scooter",
     description:
-      "Solusi transportasi terbaik di Lombok. Sewa mobil dan motor lepas kunci dengan kondisi prima dan harga bersahabat.",
+      "Rent Car & Scooter in Lombok. Best price and quality. Free delivery to airport and hotel. 24/7 service.",
     url: "https://www.dafarentalscooterlombok.com",
     siteName: "Dafa Scooter Lombok",
     locale: "id_ID",
@@ -54,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dafa Scooter Lombok Car Rental",
     description:
-      "Sewa mobil dan motor lepas kunci di Lombok. Armada terawat, harga transparan.",
+      "Rent Car & Scooter in Lombok. Best price and quality. Free delivery to airport and hotel. 24/7 service.",
     images: ["/og-image.jpg"], // Sama dengan OG Image
   },
   alternates: {
