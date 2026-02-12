@@ -85,17 +85,16 @@ export default function RootLayout({
     telephone: "+6287765089140",
     address: {
       "@type": "PostalAddress",
-      streetAddress:
-        "Jl. Bypass Bandara Int. Lombok No.km 2, Tanak Awu, Kec. Pujut",
-      addressLocality: "Kabupaten Lombok Tengah",
+      streetAddress: "Ketara, Pujut",
+      addressLocality: "Mataram",
       addressRegion: "Nusa Tenggara Barat",
       postalCode: "83573",
       addressCountry: "ID",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: -8.739184, // Koordinat perkiraan dari Google Maps link
-      longitude: 116.276789,
+      latitude: -8.7844276,
+      longitude: 116.2740155,
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
