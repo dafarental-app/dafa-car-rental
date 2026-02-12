@@ -67,9 +67,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  icons: {
-    icon: "/logo.svg",
-  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
